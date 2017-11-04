@@ -43,15 +43,25 @@ $(document).ready(function() {
 	// user clicks on crystal
 	$('.crystal').on('click', function() {
 		// get which crystal
-		console.log('click!')
 		var crystalIndex = Number($(this).attr('value'));	// get value from button clicked, and convert to a number
 		// get value
 		var crystalValue = valuesArray[crystalIndex];
 		// update score
 		score = score + crystalValue;
+		// update display
+		displayData(targetPts, score, wins, losses);
 		// compare score
 		var result = scoreChecker(score, targetPts);
-		// update display
+		// use result to decide next step;
+		if (result === 'won') {
+			$('#resultMessage').text("You've won!");
+			resetBoard();
+			displayData();
+		} else if (result === 'lost') {
+			$('#resultMessage').text("You've lost.");
+			resetBoard();
+			displayData();
+		}
 	})
 	// function to compare score to target
 	function scoreChecker(value1, value2) {
