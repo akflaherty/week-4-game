@@ -21,6 +21,15 @@ $(document).ready(function() {
 	// generate target number
 	targetPts = getRandomInt(targetMin, targetMax);
 
+	// update display
+	function displayData(goal, total, countWon, countLost) {
+		$('#targetDisp').text(goal);
+		$('#scoreDisp').text(total);
+		$('#winDisp').text(countWon);
+		$('#lossDisp').text(countLost);
+	}
+	displayData(targetPts, score, wins, losses);
+
 	function getRandomArray(max, min, arrayLength) {
 		var returnArray =[];
 		for (var i = 0; i < arrayLength; i++) {
@@ -32,11 +41,16 @@ $(document).ready(function() {
 	valuesArray = getRandomArray(crystalMin, crystalMax, numberOfCrystals);
 
 	// user clicks on crystal
-	$('.crystalImg').on('click', function() {
+	$('.crystal').on('click', function() {
 		// get which crystal
+		console.log('click!')
+		var crystalIndex = Number($(this).attr('value'));	// get value from button clicked, and convert to a number
 		// get value
+		var crystalValue = valuesArray[crystalIndex];
 		// update score
+		score = score + crystalValue;
 		// compare score
+		var result = scoreChecker(score, targetPts);
 		// update display
 	})
 	// function to compare score to target
