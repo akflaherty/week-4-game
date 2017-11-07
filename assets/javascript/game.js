@@ -14,29 +14,9 @@ $(document).ready(function() {
 	var wins = 0;
 	var losses = 0;
 
-	// generate random number between two values
-	function getRandomInt(min, max) {
-		return Math.floor(Math.random()*(max-min+1)+min)
-	}
 	// generate target number
 	targetPts = getRandomInt(targetMin, targetMax);
-
-	// update display
-	function displayData(goal, total, countWon, countLost) {
-		$('#targetDisp').text(goal);
-		$('#scoreDisp').text(total);
-		$('#winDisp').text(countWon);
-		$('#lossDisp').text(countLost);
-	}
 	displayData(targetPts, score, wins, losses);
-
-	function getRandomArray(max, min, arrayLength) {
-		var returnArray =[];
-		for (var i = 0; i < arrayLength; i++) {
-			returnArray[i] = getRandomInt(min, max);
-		}
-		return returnArray
-	}
 	// generate crystal numbers
 	valuesArray = getRandomArray(crystalMin, crystalMax, numberOfCrystals);
 
@@ -56,13 +36,35 @@ $(document).ready(function() {
 		if (result === 'won') {
 			$('#resultMessage').text("You've won!");
 			resetBoard();
-			displayData();
+			// displayData(targetPts, score, wins, losses);
 		} else if (result === 'lost') {
 			$('#resultMessage').text("You've lost.");
 			resetBoard();
-			displayData();
+			// displayData(targetPts, score, wins, losses);
 		}
 	})
+
+	// generate random number between two values
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random()*(max-min+1)+min)
+	}
+
+	// update display
+	function displayData(goal, total, countWon, countLost) {
+		$('#targetDisp').text(goal);
+		$('#scoreDisp').text(total);
+		$('#winDisp').text(countWon);
+		$('#lossDisp').text(countLost);
+	}
+
+	function getRandomArray(max, min, arrayLength) {
+		var returnArray =[];
+		for (var i = 0; i < arrayLength; i++) {
+			returnArray[i] = getRandomInt(min, max);
+		}
+		return returnArray
+	}
+	
 	// function to compare score to target
 	function scoreChecker(value1, value2) {
 		if (value1 === value2) {
@@ -85,5 +87,6 @@ $(document).ready(function() {
 		valuesArray = getRandomArray(crystalMin, crystalMax, numberOfCrystals);
 		targetPts = getRandomInt(targetMin,targetMax);
 		// update display
+		displayData(targetPts, score, wins, losses);
 	}
 })
