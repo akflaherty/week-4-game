@@ -16,6 +16,7 @@ $(document).ready(function() {
 
 	// generate target number
 	targetPts = getRandomInt(targetMin, targetMax);
+	// update display
 	displayData(targetPts, score, wins, losses);
 	// generate crystal numbers
 	valuesArray = getRandomArray(crystalMin, crystalMax, numberOfCrystals);
@@ -23,7 +24,7 @@ $(document).ready(function() {
 	// user clicks on crystal
 	$('.crystal').on('click', function() {
 		// get which crystal
-		var crystalIndex = Number($(this).attr('value'));	// get value from button clicked, and convert to a number
+		var crystalIndex = Number($(this).attr('value'));
 		// get value
 		var crystalValue = valuesArray[crystalIndex];
 		// update score
